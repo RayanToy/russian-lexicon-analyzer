@@ -93,9 +93,11 @@ python run_highlight.py --docx "path/to/textbook.docx" --lexicon "path/to/lexico
 
 Результат сохраняется рядом с исходным файлом с суффиксом `_highlighted.docx`.
 
-Использование как библиотеки
-Частотный анализ корпуса
+### Использование как библиотеки
 
+#### Частотный анализ корпуса
+
+```python
 from src.preprocessing.text_preprocessor import StandardTextPreprocessor
 from src.analysis import FrequencyAnalyzer, FileProcessor
 
@@ -110,24 +112,29 @@ processor.create_frequency_lists(
     skip_proper_nouns=True,
     output_folder="data/output/",
 )
+```
 
 Каждый выходной XLSX содержит:
 
-Слово	Сумма слов	Нормализованная частота
-клетка	345	2300.0
-организм	234	1560.0
-белок	189	1260.0
+| Слово    | Сумма слов | Нормализованная частота |
+| :------- | :--------- | :---------------------- |
+| клетка   | 345        | 2300.0                  |
+| организм | 234        | 1560.0                  |
+| белок    | 189        | 1260.0                  |
 
-Рекурсивная обработка вложенных папок
+#### Рекурсивная обработка вложенных папок
 
+```python
 processor.create_frequency_lists_recursively(
     root_folder="data/corpora/",
     output_folder="data/output/",
     skip_proper_nouns=True,
 )
+```
 
-Агрегация по тематическим сегментам
+#### Агрегация по тематическим сегментам
 
+```python
 from src.analysis import FrequencyAggregator
 
 aggregator = FrequencyAggregator()
@@ -137,16 +144,17 @@ aggregator.aggregate_and_normalize_by_segment(
     include_book_count=True,
     include_book_percentage=True,
 )
+```
 
-Результат — combined_frequency_list.xlsx с колонками:
+Результат — `combined_frequency_list.xlsx` с колонками:
+- `Сумма слов Биология 10`, `Сумма слов Физика 10`, ...
+- `Нормализованная частотность Биология 10`, ...
+- `Количество учебников Биология 10`
+- `Процент учебников Биология`
 
-Сумма слов Биология 10, Сумма слов Физика 10, ...
-Нормализованная частотность Биология 10, ...
-Количество учебников Биология 10
-Процент учебников Биология
+#### Лексическая разница между уровнями
 
-Лексическая разница между уровнями
-
+```python
 from src.analysis import DataAnalyzer
 
 analyzer  = DataAnalyzer()
@@ -157,12 +165,14 @@ new_words = analyzer.calculate_lexical_difference(
 )
 
 print(f"Новых слов в 10 классе: {len(new_words)}")
+```
 
-Коэффициент Жуайна
+#### Коэффициент Жуайна
+
 Измеряет равномерность распределения слова по тематическим сегментам.
-Значение 100 означает абсолютно равномерное распределение,
-0 — слово сосредоточено в одном сегменте.
+Значение 100 означает абсолютно равномерное распределение, 0 — слово сосредоточено в одном сегменте.
 
+```python
 from src.analysis import DataAnalyzer
 
 result_df = DataAnalyzer.calculate_juain_coefficient(
@@ -175,9 +185,11 @@ result_df = DataAnalyzer.calculate_juain_coefficient(
     ],
     output_column_name="Коэффициент Жуайна",
 )
+```
 
-Подсветка через API
+#### Подсветка через API
 
+```python
 from src.highlighting.lexicon import LexiconRepository
 from src.highlighting.highlighter import DocxHighlighter
 from src.preprocessing.text_preprocessor import StandardTextPreprocessor
@@ -192,6 +204,7 @@ highlighter = DocxHighlighter(
     black_hex="000000",
 )
 highlighter.highlight_file("input.docx", "output.docx")
+```
 
 Архитектура
 
