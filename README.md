@@ -60,10 +60,11 @@ python -c "import nltk; nltk.download('stopwords'); nltk.download('punkt'); nltk
 Основной сценарий: проверить учебный текст на соответствие лексическому минимуму.
 
 # Минимальный запуск
+```
 python run_highlight.py \
   --docx "path/to/textbook.docx" \
   --lexicon "path/to/lexicon.xlsx"
-
+```
 # С указанием выходного файла
 python run_highlight.py \
   --docx "path/to/textbook.docx" \
