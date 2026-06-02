@@ -53,6 +53,7 @@ pip install -r requirements.txt
 
 # Скачиваем ресурсы NLTK (один раз)
 python -c "import nltk; nltk.download('stopwords'); nltk.download('punkt'); nltk.download('punkt_tab')"
+```
 
 Использование
 Подсветка незнакомых слов в DOCX
