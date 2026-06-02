@@ -55,7 +55,7 @@ pip install -r requirements.txt
 python -c "import nltk; nltk.download('stopwords'); nltk.download('punkt'); nltk.download('punkt_tab')"
 ```
 
-Использование
+# Использование
 Подсветка незнакомых слов в DOCX
 Основной сценарий: проверить учебный текст на соответствие лексическому минимуму.
 
