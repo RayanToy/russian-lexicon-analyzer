@@ -55,41 +55,43 @@ pip install -r requirements.txt
 python -c "import nltk; nltk.download('stopwords'); nltk.download('punkt'); nltk.download('punkt_tab')"
 ```
 
-# Использование
-Подсветка незнакомых слов в DOCX
+## Использование
+
+### Подсветка незнакомых слов в DOCX
+
 Основной сценарий: проверить учебный текст на соответствие лексическому минимуму.
 
-# Минимальный запуск
+**Минимальный запуск:**
+
+```bash
+python run_highlight.py --docx "path/to/textbook.docx" --lexicon "path/to/lexicon.xlsx"
 ```
-python run_highlight.py \
-  --docx "path/to/textbook.docx" \
-  --lexicon "path/to/lexicon.xlsx"
+
+**С указанием выходного файла:**
+
+```bash
+python run_highlight.py --docx "path/to/textbook.docx" --lexicon "path/to/lexicon.xlsx" --out "path/to/result.docx"
 ```
-# С указанием выходного файла
-python run_highlight.py \
-  --docx "path/to/textbook.docx" \
-  --lexicon "path/to/lexicon.xlsx" \
-  --out "path/to/result.docx"
 
-# С чёрным списком (слова → чёрный цвет)
-python run_highlight.py \
-  --docx "path/to/textbook.docx" \
-  --lexicon "path/to/lexicon.xlsx" \
-  --black "data/blacklist.txt"
+**С чёрным списком (слова — чёрный цвет):**
 
-# С указанием названия колонки лексикона
-python run_highlight.py \
-  --docx "path/to/textbook.docx" \
-  --lexicon "path/to/lexicon.xlsx" \
-  --column "Слово"
+```bash
+python run_highlight.py --docx "path/to/textbook.docx" --lexicon "path/to/lexicon.xlsx" --black "data/blacklist.txt"
+```
 
-# Сменить цвет подсветки (по умолчанию FF0000 — красный)
-python run_highlight.py \
-  --docx "path/to/textbook.docx" \
-  --lexicon "path/to/lexicon.xlsx" \
-  --color "0000FF"
+**С указанием названия колонки лексикона:**
 
-Результат сохраняется рядом с исходным файлом с суффиксом _highlighted.docx.
+```bash
+python run_highlight.py --docx "path/to/textbook.docx" --lexicon "path/to/lexicon.xlsx" --column "Слово"
+```
+
+**Сменить цвет подсветки (по умолчанию FF0000 — красный):**
+
+```bash
+python run_highlight.py --docx "path/to/textbook.docx" --lexicon "path/to/lexicon.xlsx" --color "0000FF"
+```
+
+Результат сохраняется рядом с исходным файлом с суффиксом `_highlighted.docx`.
 
 Использование как библиотеки
 Частотный анализ корпуса
